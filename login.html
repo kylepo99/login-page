@@ -1,0 +1,46 @@
+<html>
+<head>
+<title> Sign In </title>
+<link rel="stylesheet" href="css.css">
+
+</head>
+<body>
+  <main id="main-holder">
+    <h1 id="login-header">Sign In</h1>
+
+    <div id="login-error-msg-holder">
+      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+    </div>
+<div style="height:300">
+    <form id="login-form">
+      <input type="text" name="username" id="username-field" class="login-form-field" placeholder="UserId" style="width:300;height:30"required>
+      <input type="password" name="password" id="password-field" class="login-form-field" style="width:300;height:30"placeholder="Password" required>
+      <input type="submit" value="Login" id="login-form-submit">
+    </form>
+  </div>
+  <script>
+  const form = document.querySelector('form')
+  form.addEventListener('submit', async function(event) {
+    let form_data = new FormData(form)
+    event.preventDefault()
+    fetch("http://127.0.0.1:8080/api/authorize_user", {
+      method : "POST",
+       mode: 'same-origin',
+      headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+     },
+      body: `username=${form_data.get("username")}&password=${form_data.get("password")}`,
+    }).then(response => {
+      if (!response.ok) {
+        console.log("hi")
+          document.getElementById("login-error-msg").style.opacity = 1;
+      }else {
+        window.location.replace("http://127.0.0.1:8080/api/restricted_area");
+      }
+    }
+  )})
+  </script>
+
+  </main>
+</body>
+</html>
