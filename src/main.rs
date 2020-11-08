@@ -50,8 +50,8 @@ fn return_hashed_password(password: &[u8]) -> String{
 }
 
 
-fn validate_password(username: String,input_password: &[u8]) -> Result<bool,MyError>  {
-    let passwords = find_user_account(username)?;
+fn validate_password(username: String,input_password: &[u8]) -> bool  {
+    let passwords = find_user_account(username);
     for pass in passwords {
         let hashed_password: String = pass.get(0);
         let correct_password = argon2::verify_encoded(&hashed_password, &input_password).unwrap();
