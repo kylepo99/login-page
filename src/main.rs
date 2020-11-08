@@ -29,7 +29,7 @@ struct User_Data {
 fn make_new_cookie(token: &String) -> String {
     let rng = thread_rng();
     let cookie = Cookie::build("token", token)
-    .domain("http://10.0.2.213/")
+    .domain("10.0.2.213")
     .path("/")
     .secure(false)
     .finish();
@@ -123,7 +123,7 @@ async fn restricted_area(req: HttpRequest) -> Result<HttpResponse,Error> {
     if valid_token { // If they have a valid let them in else redirect them back to the login page
         Ok(HttpResponse::Ok().body("WElcome in"))
     }else{
-        return Ok(HttpResponse::Found().header("Location", "/login").finish());
+        return Ok(HttpResponse::Found().header("Location", "http://10.0.2.213:8080/login").finish());
     }
 }
 
