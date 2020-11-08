@@ -123,7 +123,7 @@ async fn restricted_area(req: HttpRequest) -> Result<HttpResponse,Error> {
     if valid_token { // If they have a valid let them in else redirect them back to the login page
         Ok(HttpResponse::Ok().body("WElcome in"))
     }else{
-        return Ok(HttpResponse::Found().header("Location", "http://127.0.0.1:8080/login").finish());
+        return Ok(HttpResponse::Found().header("Location", "/login").finish());
     }
 }
 

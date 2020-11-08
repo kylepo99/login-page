@@ -23,8 +23,9 @@
   form.addEventListener('submit', async function(event) {
     let form_data = new FormData(form)
     event.preventDefault()
-    fetch("http://127.0.0.1:8080/api/authorize_user", {
+    fetch("http://10.0.2.213:8080/api/authorize_user", {
       method : "POST",
+      credentials: 'include',
       headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
      },
@@ -34,7 +35,7 @@
         console.log("hi")
           document.getElementById("login-error-msg").style.opacity = 1;
       }else {
-        window.location.replace("http://127.0.0.1:8080/api/restricted_area");
+        window.location.replace("http://10.0.2.213/api/restricted_area");
       }
     }
   )})
