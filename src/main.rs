@@ -1,3 +1,4 @@
+#![feature(try_trait)]
 
 
 use serde::{Deserialize, Serialize};
