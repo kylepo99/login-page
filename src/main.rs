@@ -29,7 +29,7 @@ struct User_Data {
 fn make_new_cookie(token: &String) -> String {
     let rng = thread_rng();
     let cookie = Cookie::build("token", token)
-    .domain("127.0.0.1")
+    .domain("http://10.0.2.213/")
     .path("/")
     .secure(false)
     .finish();
