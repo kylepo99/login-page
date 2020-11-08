@@ -138,7 +138,7 @@ async fn main() -> Result<(), std::io::Error> {
                 .route("/login", web::get().to(login))
                 .service(Files::new("/", ".").index_file("index.html"))
         })
-        .bind("127.0.0.1:8080")?
+        .bind("10.0.2.213:8080")?
         .run()
         .await?;
         Ok(())
